@@ -4,7 +4,7 @@
 <mapper namespace="hrbuddypackage.dao.EmployeeDao">
     <select id="getAllEmployeeById">
         SELECT 
-            employee_id, employee_firstname, employee_lastname
+            employee_id, employee_firstname, employee_lastname, employee_age
         FROM
             tbl_employee
     </select>
