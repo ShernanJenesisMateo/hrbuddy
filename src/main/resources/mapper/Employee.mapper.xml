@@ -2,10 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hrbuddypackage.dao.EmployeeDao">
-    <select id="getAllEmployeeById">
+
+    <select id="getAllEmployee">
         SELECT 
             employee_id, employee_firstname, employee_lastname, employee_age
         FROM
             tbl_employee
     </select>
+
+    <select id="getEmployeeById">
+        SELECT 
+            employee_id, employee_firstname, employee_lastname, employee_age
+        FROM
+            tbl_employee
+        WHERE
+            employee_id = #{employee_id}
+    </select>
+
 </mapper>
