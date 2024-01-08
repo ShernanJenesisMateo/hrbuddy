@@ -1,24 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from './redux/store'; 
+
+import { getEmployeesFetch } from './redux/employeeState';
 
 function App() {
+  const employees = useSelector((state: RootState) => state.employees.employees);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getEmployeesFetch());
+  }, [dispatch]);
+
+  console.log(employees);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h1>MY CATS</h1>
+        <div>
+          {employees.map( employee =>
+            <div key={employee.employee_id} className="row">
+              <div className='col-left'>
+                  <h2>{employee.employee_age}</h2>
+                  <h2>{employee.employee_firstname}</h2>
+                  <h2>{employee.employee_lastname}</h2>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
